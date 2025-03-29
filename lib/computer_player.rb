@@ -22,7 +22,7 @@ class ComputerPlayer
 
   def process_feedback(feedback)
     # If feedback contains '.', filter it out since it's optional
-    filtered_feedback = feedback.gsub('.', '')
+    filtered_feedback = feedback.gsub(".", "")
 
     # Only filter possible codes based on the feedback provided
     @possible_codes.select! do |code|
@@ -35,20 +35,21 @@ class ComputerPlayer
 
   private
 
-  # Generates feedback in the form of check marks and warning signs based on the guess and code
-  def generate_feedback(code, guess)
-    feedback = []
+    # Generates feedback in the form of check marks and warning signs based
+    # on the guess and code
+    def generate_feedback(code, guess)
+      feedback = []
 
-    # Count exact matches for feedback
-    guess.each_with_index do |color, index|
-      if color == code[index]
-        feedback << 'b' # Correct color and position
-      elsif code.include?(color)
-        feedback << 'w' # Correct color, wrong position
+      # Count exact matches for feedback
+      guess.each_with_index do |color, index|
+        if color == code[index]
+          feedback << "b" # Correct color and position
+        elsif code.include?(color)
+          feedback << "w" # Correct color, wrong position
+        end
       end
-    end
 
-    # Create a string of feedback
-    feedback.join
-  end
+      # Create a string of feedback
+      feedback.join
+    end
 end
